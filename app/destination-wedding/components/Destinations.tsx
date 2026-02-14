@@ -32,13 +32,15 @@ const resorts = [
 
 export default function Destinations() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const swiperRef = useRef(null);
+
+  // ✅ FIXED: prevent TypeScript error
+  const swiperRef = useRef<any>(null);
 
   const TOTAL_DOTS = 4;
 
   return (
     <section className="relative py-28 bg-white overflow-hidden">
-      {/* ⭐ LEFT FLOWER — FIXED SIZE */}
+      {/* LEFT FLOWER */}
       <img
         src="/destination-wedding/about-flower-left.png"
         className="
@@ -53,7 +55,7 @@ export default function Destinations() {
         "
       />
 
-      {/* ⭐ RIGHT FLOWER — LIGHTER */}
+      {/* RIGHT FLOWER */}
       <img
         src="/destination-wedding/flower.svg"
         className="
@@ -77,7 +79,7 @@ export default function Destinations() {
           Find Your Perfect Wedding Spot
         </p>
 
-        {/* ⭐ SWIPER */}
+        {/* SWIPER */}
         <Swiper
           modules={[Navigation]}
           spaceBetween={28}
@@ -91,8 +93,8 @@ export default function Destinations() {
           breakpoints={{
             640: { slidesPerView: 1.35 },
             768: { slidesPerView: 2.05 },
-            1024: { slidesPerView: 3.15 }, // ⭐ Figma tablet feel
-            1280: { slidesPerView: 3.25 }, // ⭐ Half card visible desktop
+            1024: { slidesPerView: 3.15 },
+            1280: { slidesPerView: 3.25 },
           }}
         >
           {resorts.map((r, i) => (
@@ -102,14 +104,15 @@ export default function Destinations() {
           ))}
         </Swiper>
 
-        {/* ⭐ CONTROLS */}
+        {/* CONTROLS */}
         <div className="flex justify-center items-center gap-10 mt-14">
-          {/* LEFT ARROW */}
-          <button className="dest-prev text-[28px] text-[#667085] hover:text-[#9B2C5D] transition">
+          <button
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="dest-prev text-[28px] text-[#667085] hover:text-[#9B2C5D] transition"
+          >
             ←
           </button>
 
-          {/* DOTS */}
           <div className="flex gap-3">
             {[...Array(TOTAL_DOTS)].map((_, i) => (
               <button
@@ -127,24 +130,26 @@ export default function Destinations() {
             ))}
           </div>
 
-          {/* RIGHT ARROW */}
-          <button className="dest-next text-[28px] text-[#667085] hover:text-[#9B2C5D] transition">
+          <button
+            onClick={() => swiperRef.current?.slideNext()}
+            className="dest-next text-[28px] text-[#667085] hover:text-[#9B2C5D] transition"
+          >
             →
           </button>
         </div>
 
-        {/* ⭐ EXPLORE BUTTON */}
+        {/* Explore Button */}
         <div className="flex justify-center mt-14">
           <button
             className="
-            bg-[#9B2C5D]
-            text-white
-            px-10 py-4
-            rounded-xl
-            font-medium
-            hover:bg-[#7c224b]
-            transition
-          "
+              bg-[#9B2C5D]
+              text-white
+              px-10 py-4
+              rounded-xl
+              font-medium
+              hover:bg-[#7c224b]
+              transition
+            "
           >
             Explore More
           </button>
@@ -154,23 +159,22 @@ export default function Destinations() {
   );
 }
 
-function ResortCard({ r }) {
+// ✅ FIXED typing (prevents next error)
+function ResortCard({ r }: any) {
   return (
     <div
       className="
-      bg-[#FFF4F9]
-      rounded-[24px]
-      p-4
-      shadow-[0_8px_24px_rgba(0,0,0,0.06)]
-    "
+        bg-[#FFF4F9]
+        rounded-[24px]
+        p-4
+        shadow-[0_8px_24px_rgba(0,0,0,0.06)]
+      "
     >
-      {/* Image */}
       <img
         src={r.img}
         className="w-full h-[220px] object-cover rounded-[18px]"
       />
 
-      {/* Content */}
       <div className="p-4">
         <h3 className="font-gilroy-semibold text-[18px] text-[#16242A]">
           {r.name}
@@ -178,7 +182,6 @@ function ResortCard({ r }) {
 
         <p className="text-sm text-[#667085] mt-1">{r.location}</p>
 
-        {/* ⭐ ICON ROW — FIGMA STYLE */}
         <div className="flex items-center gap-6 mt-4 text-sm text-[#475467]">
           <div className="flex items-center gap-2">
             <Users size={16} strokeWidth={1.5} />
@@ -191,7 +194,6 @@ function ResortCard({ r }) {
           </div>
         </div>
 
-        {/* Booking Row */}
         <div className="flex justify-between items-center mt-5">
           <span className="text-[#9D255A] text-sm flex items-center gap-1">
             <IndianRupee size={18} />0 Booking Fees
@@ -199,14 +201,14 @@ function ResortCard({ r }) {
 
           <button
             className="
-            bg-[#9B2C5D]
-            text-white
-            px-5 py-2
-            rounded-lg
-            text-sm
-            hover:bg-[#7c224b]
-            transition
-          "
+              bg-[#9B2C5D]
+              text-white
+              px-5 py-2
+              rounded-lg
+              text-sm
+              hover:bg-[#7c224b]
+              transition
+            "
           >
             Book Now
           </button>
