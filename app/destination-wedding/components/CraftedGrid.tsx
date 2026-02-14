@@ -155,8 +155,12 @@ export default function CraftedGrid() {
     </section>
   );
 }
+type GridImageProps = {
+  src: string
+  className?: string
+}
 
-function GridImage({ src, className = "" }) {
+function GridImage({ src, className = "" }: GridImageProps) {
   return (
     <div
       className={`
