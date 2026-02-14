@@ -151,7 +151,7 @@ export default function CustomizeCTA() {
 }
 
 /* Feature Component */
-function Feature({ icon, title, desc }) {
+function Feature({ icon, title, desc }: any) {
   return (
     <div className="text-center">
       <div className="text-[#F97316] mb-4 flex justify-center">{icon}</div>
