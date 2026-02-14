@@ -1,49 +1,53 @@
-"use client"
+"use client";
 
-import { useRef, useState } from "react"
+import { useRef, useState } from "react";
 
 export default function Gallery() {
+  // ✅ Properly typed ref
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const containerRef = useRef(null)
-  const [sliderPos, setSliderPos] = useState(75) // % from left
+  const [sliderPos, setSliderPos] = useState<number>(75);
 
-  const handleMove = (clientX) => {
-    if (!containerRef.current) return
+  // ✅ Typed parameter
+  const handleMove = (clientX: number) => {
+    if (!containerRef.current) return;
 
-    const rect = containerRef.current.getBoundingClientRect()
-    let newPos = ((clientX - rect.left) / rect.width) * 100
+    const rect = containerRef.current.getBoundingClientRect();
+    let newPos = ((clientX - rect.left) / rect.width) * 100;
 
-    if (newPos < 5) newPos = 5
-    if (newPos > 95) newPos = 95
+    if (newPos < 5) newPos = 5;
+    if (newPos > 95) newPos = 95;
 
-    setSliderPos(newPos)
-  }
+    setSliderPos(newPos);
+  };
 
   const handleMouseDown = () => {
-    const move = (e) => handleMove(e.clientX)
-    const up = () => {
-      window.removeEventListener("mousemove", move)
-      window.removeEventListener("mouseup", up)
-    }
+    const move = (e: MouseEvent) => handleMove(e.clientX);
 
-    window.addEventListener("mousemove", move)
-    window.addEventListener("mouseup", up)
-  }
+    const up = () => {
+      window.removeEventListener("mousemove", move);
+      window.removeEventListener("mouseup", up);
+    };
+
+    window.addEventListener("mousemove", move);
+    window.addEventListener("mouseup", up);
+  };
 
   const handleTouchStart = () => {
-    const move = (e) => handleMove(e.touches[0].clientX)
-    const up = () => {
-      window.removeEventListener("touchmove", move)
-      window.removeEventListener("touchend", up)
-    }
+    const move = (e: TouchEvent) =>
+      handleMove(e.touches[0].clientX);
 
-    window.addEventListener("touchmove", move)
-    window.addEventListener("touchend", up)
-  }
+    const up = () => {
+      window.removeEventListener("touchmove", move);
+      window.removeEventListener("touchend", up);
+    };
+
+    window.addEventListener("touchmove", move);
+    window.addEventListener("touchend", up);
+  };
 
   return (
     <section className="relative py-28 bg-white overflow-hidden">
-
       {/* FLOWER DECOR */}
       <img
         src="/destination-wedding/about-flower-left.png"
@@ -56,7 +60,6 @@ export default function Gallery() {
       />
 
       <div className="relative z-10 max-w-[1240px] mx-auto px-6">
-
         {/* Heading */}
         <h2 className="text-center font-gilroy-bold text-[#9B2C5D] text-3xl md:text-5xl mb-4">
           Designed To Envision, Built To Perfection
@@ -66,7 +69,7 @@ export default function Gallery() {
           Experience How Your Vision Comes To Life – Exactly As Imagined
         </p>
 
-        {/* ⭐ IMAGE SLIDER */}
+        {/* IMAGE SLIDER */}
         <div
           ref={containerRef}
           className="
@@ -77,14 +80,13 @@ export default function Gallery() {
             select-none
           "
         >
-
-          {/* BASE IMAGE (VISION) */}
+          {/* BASE IMAGE */}
           <img
             src="/destination-wedding/gallery-vision.png"
             className="w-full h-[320px] md:h-[540px] object-cover"
           />
 
-          {/* OVERLAY IMAGE (REALITY) */}
+          {/* OVERLAY IMAGE */}
           <div
             className="absolute top-0 left-0 h-full overflow-hidden"
             style={{ width: `${sliderPos}%` }}
@@ -95,13 +97,16 @@ export default function Gallery() {
             />
           </div>
 
-          {/* ⭐ DIVIDER LINE */}
+          {/* DIVIDER LINE */}
           <div
             className="absolute top-0 bottom-0 w-[4px] bg-[#9B2C5D]"
-            style={{ left: `${sliderPos}%`, transform: "translateX(-50%)" }}
+            style={{
+              left: `${sliderPos}%`,
+              transform: "translateX(-50%)",
+            }}
           />
 
-          {/* ⭐ DRAG BUTTON */}
+          {/* DRAG BUTTON */}
           <div
             className="
               absolute
@@ -116,14 +121,13 @@ export default function Gallery() {
             "
             style={{
               left: `${sliderPos}%`,
-              transform: "translate(-50%, -50%)"
+              transform: "translate(-50%, -50%)",
             }}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
           >
             ↔
           </div>
-
         </div>
 
         {/* LABELS */}
@@ -131,8 +135,7 @@ export default function Gallery() {
           <span>Vision</span>
           <span>Reality</span>
         </div>
-
       </div>
     </section>
-  )
+  );
 }
