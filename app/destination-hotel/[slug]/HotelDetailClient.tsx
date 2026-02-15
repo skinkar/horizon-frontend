@@ -128,9 +128,10 @@ const hotelData = {
 
   /* ================= ABOUT SECTION ================= */
   about: {
-    subTitle: "Lemon Tree Premier, Agra",
+    title: "Lemon Tree Premier, Agra", // 👈 ADD THIS
+    subTitle: "4-star hotel located in South West",
     description:
-      "4-star hotel located in South West. At Lemon Tree Premier, Delhi Airport, you can look forward to a return airport shuttle, a poolside bar and a cafe. Treat yourself to a hot stone massage, hydrotherapy or Ayurvedic treatments at Fresco, the on-site spa. Enjoy international cuisine, a poolside location, and al fresco dining at the two on-site restaurants.",
+      "At Lemon Tree Premier, Delhi Airport, you can look forward to a return airport shuttle, a poolside bar and a cafe. Treat yourself to a hot stone massage, hydrotherapy or Ayurvedic treatments at Fresco, the on-site spa. Enjoy international cuisine, a poolside location, and al fresco dining at the two on-site restaurants.",
 
     perks: [
       "An outdoor pool with sunloungers and pool umbrellas",
@@ -141,13 +142,13 @@ const hotelData = {
     ],
 
     roomFeatures:
-      "All 280 individually furnished rooms include comforts such as 24-hour room service and premium bedding, as well as thoughtful touches like laptop-compatible safes and laptop-friendly workspaces.",
+      "All 280 individually furnished rooms include comforts such as 24-hour room service and premium bedding.",
 
     moreAmenities: [
-      "Memory foam beds and rollaway/extra beds",
-      "Bathrooms with rainfall showers and free toiletries",
+      "Memory foam beds and rollaway beds",
+      "Bathrooms with rainfall showers",
       "32-inch LCD TVs with premium channels",
-      "Wardrobes, separate sitting areas and coffee/tea makers",
+      "Wardrobes and coffee/tea makers",
     ],
 
     languages: ["English", "Hindi"],
@@ -241,8 +242,8 @@ const similarHotelsData = [
     location: "Uttar Pradesh",
     price: 5999,
     bookingFees: 0,
-  }, 
-   {
+  },
+  {
     id: "4",
     image: "/destination-hotel/hotelname1.jpg",
     name: "Lemon Tree Premier Hotel",
@@ -364,8 +365,6 @@ export default function HotelDetailClient() {
       <PopularHotels hotels={similarHotelsData} />
       <PopularRestaurants restaurants={restaurantsData} />
       <PopularThingsToDo activities={activitiesData} />
-
-
     </div>
   );
 }
