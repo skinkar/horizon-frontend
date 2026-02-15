@@ -200,6 +200,7 @@ const reviewsData = [
     date: "Jul 08, 2023",
     category: "Family",
     stayType: "2-Night Stay",
+    verified: true, // 👈 ADD THIS
     comment:
       "This was my third stay and I am not disappointed. Wonderful property and amazing staff.",
     images: [
@@ -209,10 +210,11 @@ const reviewsData = [
     likes: 15,
     dislikes: 2,
     reply: {
-      admin: "Phoenix Fly",
+      author: "Phoenix Fly", // 👈 change from admin
+      role: "Admin", // 👈 add role
       date: "Jul 08, 2023",
-      message:
-        "Thanks a lot for using our services. We would love to serve you again!",
+      comment:
+        "Thanks a lot for using our services. We would love to serve you again!", // 👈 change from message
     },
   },
 ];
