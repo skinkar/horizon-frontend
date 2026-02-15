@@ -1,5 +1,3 @@
-import { Hotel } from "@/types/hotel";
-
 export const hotels: Hotel[] = [
   {
     id: "1",
