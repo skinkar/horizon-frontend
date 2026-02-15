@@ -20,5 +20,5 @@ export default function Page({ params }: { params: { slug: string } }) {
     ],
   }
 
-  return <HotelDetailClient hotel={hotel} />
+  return <HotelDetailClient />
 }
