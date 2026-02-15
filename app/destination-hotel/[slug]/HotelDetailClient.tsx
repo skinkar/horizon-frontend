@@ -364,9 +364,9 @@ export default function HotelDetailClient() {
         ]}
       />
 
-      <PopularHotels hotels={similarHotelsData} />
-      <PopularRestaurants restaurants={restaurantsData} />
-      <PopularThingsToDo activities={activitiesData} />
+       <PopularHotels hotels={similarHotelsData} />
+     <PopularRestaurants restaurants={restaurantsData} />
+       <PopularThingsToDo activities={activitiesData} /> 
     </div>
   );
 }
