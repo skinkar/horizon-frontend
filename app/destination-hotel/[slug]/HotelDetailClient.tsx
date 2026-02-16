@@ -14,6 +14,7 @@ import Policies from "@/app/listing/package-listing/package-details/components/P
 import PopularHotels from "./components/PopularHotels";
 import PopularRestaurants from "./components/PopularRestaurants";
 import PopularThingsToDo from "./components/PopularThingsToDo";
+import DreamPlaces from "@/app/destination-wedding/components/DreamPlaces";
 
 /* ================= DUMMY HOTEL DATA (Backend Ready Structure) ================= */
 
@@ -231,7 +232,7 @@ const similarHotelsData = [
   },
   {
     id: "2",
-    image: "/destination-hotel/hotelname1.jpg",
+    image: "/destination-hotel/hotelname2.jpg",
     name: "Lemon Tree Premier Hotel",
     location: "Uttar Pradesh",
     price: 5999,
@@ -239,7 +240,7 @@ const similarHotelsData = [
   },
   {
     id: "3",
-    image: "/destination-hotel/hotelname1.jpg",
+    image: "/destination-hotel/hotelname3.jpg",
     name: "Lemon Tree Premier Hotel",
     location: "Uttar Pradesh",
     price: 5999,
@@ -247,7 +248,7 @@ const similarHotelsData = [
   },
   {
     id: "4",
-    image: "/destination-hotel/hotelname1.jpg",
+    image: "/destination-hotel/hotelname4.jpg",
     name: "Lemon Tree Premier Hotel",
     location: "Uttar Pradesh",
     price: 5999,
@@ -258,7 +259,7 @@ const similarHotelsData = [
 const restaurantsData = [
   {
     id: "1",
-    image: "/destination-hotel/restaurant1.png",
+    image: "/destination-hotel/restaurant1.jpg",
     name: "Republic Of Noodles",
     cuisines: "Chinese, Italian, Continental, Thai",
     distance: "0.3 Km",
@@ -266,7 +267,7 @@ const restaurantsData = [
   },
   {
     id: "2",
-    image: "/destination-hotel/restaurant2.png",
+    image: "/destination-hotel/restaurant2.jpg",
     name: "Citrus Cafe",
     cuisines: "Chinese, Italian, Continental",
     distance: "0.3 Km",
@@ -274,7 +275,23 @@ const restaurantsData = [
   },
   {
     id: "3",
-    image: "/destination-hotel/restaurant3.png",
+    image: "/destination-hotel/restaurant3.jpg",
+    name: "Clever Fox Cafe",
+    cuisines: "Chinese, Italian, Continental",
+    distance: "0.3 Km",
+    from: "Lemon Tree Premier",
+  },
+  {
+    id: "4",
+    image: "/destination-hotel/restaurant4.jpg",
+    name: "Clever Fox Cafe",
+    cuisines: "Chinese, Italian, Continental",
+    distance: "0.3 Km",
+    from: "Lemon Tree Premier",
+  },
+  {
+    id: "5",
+    image: "/destination-hotel/restaurant5.jpg",
     name: "Clever Fox Cafe",
     cuisines: "Chinese, Italian, Continental",
     distance: "0.3 Km",
@@ -286,7 +303,7 @@ const restaurantsData = [
 const activitiesData = [
   {
     id: "1",
-    image: "/destination-hotel/activity1.png",
+    image: "/destination-hotel/activity1.jpg",
     title: "Old Delhi Street Food Tour",
     duration: "3h Approx",
     distance: "3 Km",
@@ -294,7 +311,7 @@ const activitiesData = [
   },
   {
     id: "2",
-    image: "/destination-hotel/activity2.png",
+    image: "/destination-hotel/activity2.jpg",
     title: "Humayun’s Tomb Visit",
     duration: "3h Approx",
     distance: "3 Km",
@@ -302,7 +319,15 @@ const activitiesData = [
   },
   {
     id: "3",
-    image: "/destination-hotel/activity3.png",
+    image: "/destination-hotel/activity3.jpg",
+    title: "Explore Red Fort",
+    duration: "3h Approx",
+    distance: "3 Km",
+    from: "Lemon Tree Premier",
+  },
+  {
+    id: "4",
+    image: "/destination-hotel/activity3.jpg",
     title: "Explore Red Fort",
     duration: "3h Approx",
     distance: "3 Km",
@@ -314,59 +339,61 @@ const activitiesData = [
 
 export default function HotelDetailClient() {
   return (
-    <div className="max-w-7xl mx-auto px-4 pt-24 pb-10">
-      <HotelGallery images={hotelData.images} />
+    <>
+      <div className="max-w-7xl mx-auto px-4 pt-24 pb-10">
+        <HotelGallery images={hotelData.images} />
 
-      <HotelTabs />
+        <HotelTabs />
 
-      <HotelHeader
-        hotel={{
-          name: hotelData.name,
-          starRating: hotelData.starRating,
-          address: hotelData.address,
-        }}
-      />
+        <HotelHeader
+          hotel={{
+            name: hotelData.name,
+            starRating: hotelData.starRating,
+            address: hotelData.address,
+          }}
+        />
 
-      <RoomsSection rooms={hotelData.rooms} />
+        <RoomsSection rooms={hotelData.rooms} />
 
-      <AmenitiesSection
-        propertyAmenities={hotelData.propertyAmenities}
-        roomAmenities={hotelData.roomAmenities}
-      />
+        <AmenitiesSection
+          propertyAmenities={hotelData.propertyAmenities}
+          roomAmenities={hotelData.roomAmenities}
+        />
 
-      <AboutSection hotel={hotelData} />
-      <Policies />
+        <AboutSection hotel={hotelData} />
+        <Policies />
 
-      <ReviewsSection reviews={reviewsData} />
-      <NearbySection
-        mapImage="/destination-hotel/nearby-map.png"
-        touristPlaces={[
-          { name: "DLF Promenade Vasant Kunj", distance: "6 min drive" },
-          { name: "DLF Emporio Vasant Kunj", distance: "7 min drive" },
-          { name: "Dada Dev Mandir", distance: "13 min drive" },
-        ]}
-        transportHubs={[
-          {
-            name: "Delhi Aero City Station",
-            distance: "5 min walk",
-            type: "metro",
-          },
-          {
-            name: "New Delhi Palam Station",
-            distance: "10 min drive",
-            type: "train",
-          },
-          {
-            name: "Delhi (DEL-Indira Gandhi Intl)",
-            distance: "9 min drive",
-            type: "airport",
-          },
-        ]}
-      />
-
-       <PopularHotels hotels={similarHotelsData} />
-     <PopularRestaurants restaurants={restaurantsData} />
-       <PopularThingsToDo activities={activitiesData} /> 
-    </div>
+        <ReviewsSection reviews={reviewsData} />
+        <NearbySection
+          mapImage="/destination-hotel/nearby-map.png"
+          touristPlaces={[
+            { name: "DLF Promenade Vasant Kunj", distance: "6 min drive" },
+            { name: "DLF Emporio Vasant Kunj", distance: "7 min drive" },
+            { name: "Dada Dev Mandir", distance: "13 min drive" },
+          ]}
+          transportHubs={[
+            {
+              name: "Delhi Aero City Station",
+              distance: "5 min walk",
+              type: "metro",
+            },
+            {
+              name: "New Delhi Palam Station",
+              distance: "10 min drive",
+              type: "train",
+            },
+            {
+              name: "Delhi (DEL-Indira Gandhi Intl)",
+              distance: "9 min drive",
+              type: "airport",
+            },
+          ]}
+        />
+      </div>
+      <PopularHotels hotels={similarHotelsData} />
+      <PopularRestaurants restaurants={restaurantsData} />
+      <PopularThingsToDo activities={activitiesData} />
+      <DreamPlaces theme="dream" />
+    </>
   );
 }

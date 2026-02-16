@@ -218,3 +218,11 @@
 .swiper-slide-next {
   transform: scale(0.96);
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

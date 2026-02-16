@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import { themes, ThemeType } from "@/lib/theme";
 
 import "swiper/css";
 
@@ -24,8 +25,13 @@ const places: Place[] = [
   { name: "Karnataka", img: "/destination-wedding/circle9.png" },
 ];
 
-export default function DreamPlaces() {
+export default function DreamPlaces({
+  theme = "wedding",
+}: {
+  theme?: ThemeType;
+}) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const currentTheme = themes[theme];
 
   // Properly typed swiper ref
   const swiperRef = useRef<any>(null);
@@ -33,7 +39,9 @@ export default function DreamPlaces() {
   const TOTAL_DOTS = 4;
 
   return (
-    <section className="relative py-24 bg-white overflow-hidden">
+    <section
+      className={`relative py-24 ${currentTheme.sectionBg} overflow-hidden`}
+    >
       {/* Background Decoration */}
       <img
         src="/destination-wedding/flower.svg"
@@ -47,7 +55,9 @@ export default function DreamPlaces() {
 
       <div className="relative z-10 max-w-[1320px] mx-auto px-6">
         {/* Heading */}
-        <h2 className="text-center font-gilroy-bold text-[#9B2C5D] text-3xl md:text-5xl mb-4">
+        <h2
+          className={`text-center font-gilroy-bold ${currentTheme.heading} text-3xl md:text-5xl mb-4`}
+        >
           Dreaming Of A Perfect Place?
         </h2>
 
@@ -78,17 +88,22 @@ export default function DreamPlaces() {
               prevEl: ".dream-prev",
             }}
           >
-            {[...places, { name: "More Places", img: "/destination-wedding/more.png", more: true }].map(
-              (p, i) => (
-                <SwiperSlide key={i}>
-                  {p.more ? (
-                    <ViewMoreCard mobile />
-                  ) : (
-                    <CircleCard place={p} mobile />
-                  )}
-                </SwiperSlide>
-              )
-            )}
+            {[
+              ...places,
+              {
+                name: "More Places",
+                img: "/destination-wedding/more.png",
+                more: true,
+              },
+            ].map((p, i) => (
+              <SwiperSlide key={i}>
+                {p.more ? (
+                  <ViewMoreCard mobile />
+                ) : (
+                  <CircleCard place={p} mobile />
+                )}
+              </SwiperSlide>
+            ))}
           </Swiper>
 
           {/* Controls */}
